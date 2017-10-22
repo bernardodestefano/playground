@@ -1,0 +1,24 @@
+{
+  "name": "playground",
+  "version": "1.0.0",
+  "description": "A personal playground to play around",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/bernardodestefano/playground.git"
+  },
+  "keywords": [
+    "frontend",
+    "webpack",
+    "js"
+  ],
+  "author": "Bernardo de Stefano",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bernardodestefano/playground/issues"
+  },
+  "homepage": "https://github.com/bernardodestefano/playground#readme"
+}
