@@ -1,7 +1,11 @@
 .intro {
 	width: 100%;
 	min-height: 100vh;
-	background: url(https://pixabay.com/photo-416973/) no-repeat top center scroll;
+	background: url('/img/moon.jpg') no-repeat top center scroll;
 	background-size: cover;
-	background-color: #d3d3d3;
+}
+
+.intro__wrap {
+	font-size: 5rem;
+	color: yellow;
 }
