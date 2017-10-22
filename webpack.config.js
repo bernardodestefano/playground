@@ -1,6 +1,12 @@
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+
+const extractPlugin = new ExtractTextPlugin({
+	filename: 'main.css'
+});
+
 const {
 	flow
 } = require('lodash/fp');
@@ -10,6 +16,29 @@ const {
 } = require('path');
 
 const dir = flow(resolve, join);
+
+
+const img = {
+    test: /\.(gif|png|jpe?g|svg)$/i,
+    use: [
+    	{
+    		loader: 'file-loader',
+    		options: {
+    			name: '[name].[ext]',
+    			outputPath: 'img/',
+    			publicPath: 'img/'
+    		}
+    	}
+    ]
+  }
+
+
+const html = {
+	test: /\.html$/,
+	use: ['html-loader']
+}
+
+
 
 const css = {
 	test: /(\.scss$)/,
@@ -56,9 +85,10 @@ module.exports = {
 		//publicPath: ''
 	},
 	module: {
-		rules: [css, js]
+		rules: [css, js, img, html]
 	},
 	plugins: [
+		extractPlugin,
 		new CleanWebpackPlugin('dist'),
 		new HtmlWebpackPlugin({
 			template: dir('src', 'index.html')
