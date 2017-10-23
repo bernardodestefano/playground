@@ -1,11 +1,29 @@
-.intro {
-	width: 100%;
-	min-height: 100vh;
-	background: url('/img/moon.jpg') no-repeat top center scroll;
-	background-size: cover;
+$color-primary: #3da7ff;
+
+body {
+  //font-family: 'Lato', sans-serif;
+  font-family: 'Montserrat', sans-serif;
+  font-size: 35px;
+  background-color: rgba(61, 167, 255, .09);
 }
 
 .intro__wrap {
-	font-size: 5rem;
-	color: yellow;
+  font-weight: bold;
+  color: $color-primary;
+  border-right: 1px solid $color-primary;
+  letter-spacing: 2px;
+}
+
+.intro {
+  display: flex;
+}
+
+.city {
+  background-color: $color-primary;
+  border-radius: 5px;
+  padding: 1px 3px;
+}
+
+.container {
+  margin: 4em auto;
 }

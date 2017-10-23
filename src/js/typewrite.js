@@ -5,7 +5,7 @@ const write = (el, text, i, next) => {
 		el.innerHTML = text.substring(0, i);
 		setTimeout(() => { write(el, text, i + 1, next) }, delay);
 	} else {
-		next();
+    setTimeout(()=> next(), delay*3);
 	}
 }
 
@@ -19,20 +19,18 @@ const erase = (el, text, i, next) => {
 }
 
 const typewrite = () => {
-	const wordsList =  ['Hello','Salut','Ola','Hey','Ciao'];
+	const wordsList =  ['HELLO,','SALUT,','OLA,','HEY,','CIAO,'];
 	const span = document.getElementById('greetings');
-	const repeat = (i) => {
+
+  const repeat = (i) => {
 		const word = wordsList[i]
 		const nextWord = (i + 1) % wordsList.length;
-		write(
-			span,
-			word,
-			0,
-			() => erase(span, word, word.length, () => repeat(nextWord))
-		);
+		write( span, word, 0, () => erase(span, word, word.length, () => repeat(nextWord) ) );
 	}
 
 	repeat(0);
 }
+
+typewrite();
 
 module.exports = typewrite;
