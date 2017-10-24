@@ -27,3 +27,61 @@ body {
 .container {
   margin: 4em auto;
 }
+
+$color-primary : #ff5851;
+
+body {
+  font-family: 'Montserrat', sans-serif;
+}
+
+.page {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: $color-primary;
+}
+
+.hello {
+  position: absolute;
+  font-size: 96px;
+  font-weight: bold;
+  top: 40%;
+  right: -20%;
+}
+
+.slide-left-page{
+    animation: slide-left-page ease 1.4s;
+    animation-fill-mode: forwards; /*when the spec is finished*/
+}
+
+.slide-left-intro{
+    animation: slide-left-intro ease 1.4s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards; /*when the spec is finished*/
+    opacity: 0;
+}
+
+@keyframes slide-left-page{
+    0% {
+        transform:  translate(100%,0%);
+    }
+    90% {
+        transform:  translate(-50%,0%);
+        width: 50%;
+    }
+    100% {
+        transform:  translate(5%,10%);
+        width: 50%;
+    }
+}
+
+@keyframes slide-left-intro{
+     0% {
+        opacity:0;
+        transform:  translate(-200px,0px)  ;
+    }
+    100% {
+        opacity:1;
+        transform:  translate(0px,0px)  ;
+    }
+}

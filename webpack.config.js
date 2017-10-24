@@ -2,21 +2,13 @@ const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-
 const extractPlugin = new ExtractTextPlugin({
 	filename: 'main.css'
 });
-
-const {
-	flow
-} = require('lodash/fp');
-const {
-	join,
-	resolve
-} = require('path');
+const { flow } = require('lodash/fp');
+const { join, resolve } = require('path');
 
 const dir = flow(resolve, join);
-
 
 const img = {
     test: /\.(gif|png|jpe?g|svg)$/i,
@@ -30,18 +22,16 @@ const img = {
     		}
     	}
     ]
-  }
-
+}
 
 const html = {
 	test: /\.html$/,
 	use: ['html-loader']
 }
 
-
-
 const css = {
 	test: /(\.scss$)/,
+	exclude: /(node_modules)/,
 	use: [{
 		loader: "style-loader"
 	}, {
@@ -56,7 +46,6 @@ const css = {
 		}
 	}]
 };
-
 
 const js = {
 	test: /\.js$/,
