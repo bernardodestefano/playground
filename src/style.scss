@@ -1,0 +1,79 @@
+$color-primary : #ff5851;
+$color-secondary: #3da7ff;
+
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
+.intro__wrap {
+  font-weight: bold;
+  color: $color-primary;
+  border-right: 1px solid $color-primary;
+  letter-spacing: 2px;
+}
+
+.intro {
+  display: flex;
+}
+
+.city {
+  background-color: $color-primary;
+  border-radius: 5px;
+  padding: 1px 3px;
+}
+
+.container {
+  margin: 4em auto;
+}
+
+.page {
+  position: relative;
+  height: 100vh;
+  width: 100%;
+  background-color: $color-primary;
+}
+
+.hello {
+  position: absolute;
+  font-size: 96px;
+  font-weight: bold;
+  top: 40%;
+  right: -20%;
+}
+
+.slide-left-page{
+    animation: slide-left-page ease 1.4s;
+    animation-fill-mode: forwards; /*when the spec is finished*/
+}
+
+.slide-left-intro{
+    animation: slide-left-intro ease 1.4s;
+    animation-delay: 1.5s;
+    animation-fill-mode: forwards; /*when the spec is finished*/
+    opacity: 0;
+}
+
+@keyframes slide-left-page{
+    0% {
+        transform:  translate(100%,0%);
+    }
+    90% {
+        transform:  translate(-50%,0%);
+        width: 50%;
+    }
+    100% {
+        transform:  translate(5%,10%);
+        width: 50%;
+    }
+}
+
+@keyframes slide-left-intro{
+     0% {
+        opacity:0;
+        transform:  translate(-200px,0px)  ;
+    }
+    100% {
+        opacity:1;
+        transform:  translate(0px,0px)  ;
+    }
+}

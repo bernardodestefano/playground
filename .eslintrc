@@ -1,0 +1,10 @@
+{
+  "extends": "eslint-config-airbnb",
+  "env": {
+    "browser": true
+  },
+	"rules": {
+			"no-console": "off",
+			"import/no-named-as-default": 0
+	}
+}
