@@ -7,6 +7,8 @@ const baseConfig = require('./webpack.common.js');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = merge(baseConfig, {
+  devtool: 'source-map',
+
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.[chunkhash].js',
@@ -30,10 +32,7 @@ module.exports = merge(baseConfig, {
     // Extract imported CSS into own file
     new ExtractTextPlugin('[name].bundle.[chunkhash].css'),
     // Minify JS
-    new UglifyJsPlugin({
-      sourceMap: false,
-      compress: true,
-    }),
+    new UglifyJsPlugin(),
     // Minify CSS
     new webpack.LoaderOptionsPlugin({
       minimize: true,
