@@ -1,9 +1,10 @@
 import React from 'react';
+import Intro from './Intro';
 import '../style.scss';
 
 const App = () => (
   <div className="app">
-    main APP asdomare semper domina
+    <Intro />
   </div>
 );
 
