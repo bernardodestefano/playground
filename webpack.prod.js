@@ -7,8 +7,6 @@ const baseConfig = require('./webpack.common.js');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = merge(baseConfig, {
-  devtool: 'source-map',
-
   output: {
     path: path.resolve(__dirname, 'dist'),
     filename: '[name].bundle.[chunkhash].js',

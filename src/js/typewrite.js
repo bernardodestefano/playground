@@ -1,31 +1,33 @@
 const delay = 200;
 
 const write = (el, text, i, next) => {
+  const elem = el;
   if (i <= text.length) {
-    el.innerHTML = text.substring(0, i);
-    setTimeout(() => { write(el, text, i + 1, next) }, delay);
+    elem.innerHTML = text.substring(0, i);
+    setTimeout(() => { write(elem, text, i + 1, next); }, delay);
   } else {
     setTimeout(() => next(), delay * 3);
   }
 };
 
 const erase = (el, text, i, next) => {
+  const elem = el;
   if (i > -1) {
-    el.innerHTML = text.substring(0, i);
-    setTimeout(() => { erase(el, text, i - 1, next); }, delay / 2);
+    elem.innerHTML = text.substring(0, i);
+    setTimeout(() => { erase(elem, text, i - 1, next); }, delay / 2);
   } else {
     next();
   }
 };
 
 const typewrite = () => {
-  const wordsList =  ['HELLO,', 'SALUT,', 'OLA,', 'HEY,', 'CIAO,'];
+  const wordsList = ['HELLO,', 'SALUT,', 'OLA,', 'HEY,', 'CIAO,'];
   const span = document.getElementById('greetings');
 
   const repeat = (i) => {
-    const word = wordsList[i]
+    const word = wordsList[i];
     const nextWord = (i + 1) % wordsList.length;
-    write( span, word, 0, () => erase(span, word, word.length, () => repeat(nextWord)));
+    write(span, word, 0, () => erase(span, word, word.length, () => repeat(nextWord)));
   };
 
   repeat(0);
