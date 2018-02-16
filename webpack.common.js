@@ -1,4 +1,3 @@
-const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -38,9 +37,6 @@ module.exports = {
   },
   plugins: [
     new ExtractTextPlugin('style.css'),
-    new webpack.EnvironmentPlugin([
-      'NODE_ENV',
-    ]),
     new HtmlWebPackPlugin({
       template: './src/index.html',
     }),
