@@ -1,9 +1,12 @@
 import React from 'react';
 import Greeting from './Greeting';
+import '../style.scss';
 
 const Slider = () => (
   <section>
-    {/* <div className="page slide-left-page"><div className="hello slide-left-intro">HELLO!</div></div> */}
+    <div className="slider slide-left-page">
+      <div className="slider__title slide-left-intro">HELLO!</div>
+    </div>
     <Greeting />
   </section>
 );

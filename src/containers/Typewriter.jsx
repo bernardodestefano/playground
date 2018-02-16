@@ -6,7 +6,7 @@ class Typewriter extends React.Component {
     this.typewriter = this.typewriter.bind(this);
     // If you don’t use something in render, it shouldn’t be in the state.
     this.delay = 200;
-    this.words = ['HELLO,', 'SALUT,', 'OLA,', 'HEY,', 'CIAO,'];
+    this.words = ['HELLO,', 'SALUT,', 'OLA,', 'HEY,', 'CIAO,', 'YIASSOO,'];
     this.state = {
       text: '',
     };
@@ -30,7 +30,7 @@ class Typewriter extends React.Component {
     repeat(0);
   }
 
-  writeWord(word) {
+  writeWord2(word) {
     return new Promise((resolve) => {
       const charsToAdd = word.map((char, i) => this.writeChar(char, i));
 
@@ -42,6 +42,17 @@ class Typewriter extends React.Component {
         })
         .catch(err => console.log(err));
     });
+  }
+
+  writeWord(word) {
+    const charsToAdd = word.map((char, i) => this.writeChar(char, i));
+
+    return Promise.all(charsToAdd)
+      .then(() => {
+        const charsToDelete = word.slice().reverse().map((char, i) => this.deleteChar(char, i));
+        return Promise.all(charsToDelete);
+      })
+      .catch(err => console.log(err));
   }
 
   writeChar(char, i) {
