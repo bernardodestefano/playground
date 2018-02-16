@@ -5,7 +5,7 @@ class Typewriter extends React.Component {
     super(props);
     this.typewriter = this.typewriter.bind(this);
     // If you don’t use something in render, it shouldn’t be in the state.
-    this.delay = 400;
+    this.delay = 200;
     this.words = ['HELLO,', 'SALUT,', 'OLA,', 'HEY,', 'CIAO,'];
     this.state = {
       text: '',
@@ -21,27 +21,42 @@ class Typewriter extends React.Component {
       const word = this.words[i].split('');
       const nextWord = (i + 1) % this.words.length;
       
-      // this.writeWord(word, () => repeat(nextWord));
-      this.writeWord(word)
-        .then(() => console.log('fulfilled!'))
-        .catch(err => console.log(err));
+      this.writeWord(word);
+      // TODO deleteWord
     };
 
     repeat(0);
   }
 
   writeWord(word) {
-    return new Promise((resolve) => {
-      resolve(word.map((char, i) => setTimeout(() => this.writeChar(char), this.delay * (i + 1))));
+    return new Promise(() => {
+      const charsToAdd = word.map((char, i) => this.writeChar(char, i));
+      const charsToDelete = word.slice().reverse().map((char, i) => this.deleteChar(char, i, word.length));
+
+      Promise.all(charsToAdd)
+        .then(() => Promise.all(charsToDelete))
+        .catch(err => console.log(err));
     });
   }
 
-  writeChar(char) {
-    this.setState(state => ({ text: state.text + char }));
+  writeChar(char, i) {
+    return new Promise((resolve) => {
+      setTimeout(
+        () => resolve(this.setState(state => ({ text: state.text + char }))),
+        this.delay * (i + 1),
+      );
+    });
   }
 
-  deleteChar(char) {
-    this.setState(state => ({ text: state.text - char }));
+  deleteChar(char, i, length) {
+    return new Promise((resolve) => {
+      setTimeout(
+        () => resolve(this.setState(state => (
+          { text: state.text.slice(0, (state.text.length - 1)) }
+        ))),
+        this.delay * (i + length + 1),
+      );
+    });
   }
 
   render() {
