@@ -20,21 +20,26 @@ class Typewriter extends React.Component {
     const repeat = (i) => {
       const word = this.words[i].split('');
       const nextWord = (i + 1) % this.words.length;
-      
-      this.writeWord(word);
-      // TODO deleteWord
+
+
+      this.writeWord(word)
+        .then(() => repeat(nextWord))
+        .catch(err => console.log(err));
     };
 
     repeat(0);
   }
 
   writeWord(word) {
-    return new Promise(() => {
+    return new Promise((resolve) => {
       const charsToAdd = word.map((char, i) => this.writeChar(char, i));
-      const charsToDelete = word.slice().reverse().map((char, i) => this.deleteChar(char, i, word.length));
 
       Promise.all(charsToAdd)
-        .then(() => Promise.all(charsToDelete))
+        .then(() => {
+          const charsToDelete = word.slice().reverse().map((char, i) => this.deleteChar(char, i));
+          Promise.all(charsToDelete)
+            .then(() => resolve());
+        })
         .catch(err => console.log(err));
     });
   }
@@ -48,13 +53,13 @@ class Typewriter extends React.Component {
     });
   }
 
-  deleteChar(char, i, length) {
+  deleteChar(char, i) {
     return new Promise((resolve) => {
       setTimeout(
         () => resolve(this.setState(state => (
           { text: state.text.slice(0, (state.text.length - 1)) }
         ))),
-        this.delay * (i + length + 1),
+        (this.delay / 2) * (i + 1),
       );
     });
   }
